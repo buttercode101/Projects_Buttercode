@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rosendal Equestrian & Country Experiences — Investment Memorandum</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --ink: #1f2430;
+      --muted: #5f6b7a;
+      --brand: #155e75;
+      --brand-2: #7c3aed;
+      --accent: #f59e0b;
+      --ok: #16a34a;
+      --warn: #dc2626;
+      --line: #dde3ee;
+      --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 10% 10%, #eaf7ff, transparent 40%),
+                  radial-gradient(circle at 90% 5%, #f2ecff, transparent 35%),
+                  var(--bg);
+      line-height: 1.55;
+    }
+
+    .hero {
+      background: linear-gradient(125deg, #0f172a, #1e293b 45%, #0e7490 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400"><g fill="none" stroke="rgba(255,255,255,0.12)"><path d="M0 300 C300 260 450 340 760 280 C980 240 1200 280 1600 220"/><path d="M0 330 C260 280 500 380 740 320 C960 280 1250 350 1600 300"/></g></svg>') center/cover no-repeat;
+      opacity: .8;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    h1 { margin: 0; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.12; }
+    .subtitle { margin: 12px 0 0; font-size: 1.1rem; color: #d8f3ff; max-width: 820px; }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .meta {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: .93rem;
+    }
+    .meta b { display: block; font-size: .78rem; color: #b8e6ff; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; }
+
+    .wrap { max-width: 1100px; margin: 24px auto 90px; padding: 0 18px; }
+
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .toc h2 { margin: 0 0 10px; font-size: 1.15rem; }
+    .toc ol { margin: 0; padding-left: 20px; columns: 2; }
+    .toc a { color: var(--brand); text-decoration: none; }
+
+    section.card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    section.card h2 { margin-top: 0; font-size: 1.45rem; color: #0f3d4a; }
+    h3 { color: #123f66; margin-bottom: 8px; }
+    p, li { color: #223046; }
+    .muted { color: var(--muted); }
+    ul, ol { margin-top: 6px; }
+
+    .kpi-grid, .risk-grid, .cards-4 {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    }
+    .mini {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: linear-gradient(180deg, #fff, #f8fbff);
+    }
+    .mini h4 { margin: 0 0 6px; font-size: 1rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .flow div {
+      background: #eff6ff;
+      border: 1px solid #cfe0ff;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: .92rem;
+      position: relative;
+    }
+    .flow div:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #4b5563;
+      background: #fff;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      font-size: 12px;
+    }
+
+    .funding {
+      border: 2px dashed #94a3b8;
+      border-radius: 14px;
+      padding: 16px;
+      background: #f8fafc;
+    }
+    .ask {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #0f766e;
+      margin: 4px 0 10px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 22px;
+    }
+    .timeline:before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 4px;
+      bottom: 4px;
+      width: 3px;
+      border-radius: 4px;
+      background: linear-gradient(var(--brand), var(--brand-2));
+    }
+    .step { position: relative; margin: 12px 0; padding-left: 12px; }
+    .step:before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--brand);
+    }
+
+    .badge { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size:.75rem; font-weight:700; margin-left:6px; }
+    .ok { background:#e9fceg; color:var(--ok); border:1px solid #baf3cf; }
+    .risk { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      margin-top: 24px;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 900px) {
+      .toc ol { columns: 1; }
+      .flow { grid-template-columns: 1fr; }
+      .flow div:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: calc(100% + 2px); transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="pill">Investor Edition · May 26, 2026</span>
+      <h1>Rosendal Equestrian & Country Experiences (RECE)</h1>
+      <p class="subtitle">An investor-grade, safety-first rural tourism platform for Rosendal, designed for strong unit economics, measurable impact, and scalable replication.</p>
+      <div class="meta-grid">
+        <div class="meta"><b>Prepared for</b>Funders, Impact Investors, Strategic Partners</div>
+        <div class="meta"><b>Location</b>Rosendal, Dihlabeng Municipality, Free State</div>
+        <div class="meta"><b>Venture Type</b>Experience-led Tourism & Hospitality</div>
+        <div class="meta"><b>Investment Stage</b>Seed / Structured Growth</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="toc">
+      <h2>Memorandum Navigator</h2>
+      <ol>
+        <li><a href="#exec">Executive Investment Case</a></li>
+        <li><a href="#opportunity">Opportunity Context</a></li>
+        <li><a href="#venture">Business Model</a></li>
+        <li><a href="#portfolio">Product & Revenue</a></li>
+        <li><a href="#market">Market & Demand</a></li>
+        <li><a href="#positioning">Positioning</a></li>
+        <li><a href="#commercial">Commercial Strategy</a></li>
+        <li><a href="#operations">Operations & Compliance</a></li>
+        <li><a href="#financials">Financial Model</a></li>
+        <li><a href="#funding">Funding Ask</a></li>
+        <li><a href="#risk">Risk Register</a></li>
+        <li><a href="#impact">Impact Thesis</a></li>
+        <li><a href="#roadmap">24-Month Roadmap</a></li>
+        <li><a href="#dd">Due Diligence Checklist</a></li>
+        <li><a href="#close">Closing Rationale</a></li>
+      </ol>
+    </div>
+
+    <section class="card" id="exec">
+      <h2>1) Executive Investment Case</h2>
+      <p>RECE is engineered as a high-discipline venture to capture demand for authentic countryside experiences. It is intentionally structured as a professionally managed platform—not a lifestyle hobby operation—built on governance, safety assurance, and partner-distributed demand.</p>
+      <div class="cards-4">
+        <div class="mini"><h4>Demand Thesis</h4><p>Drive-to domestic tourism is increasingly experience-led. Visitors want packaged stays + activities.</p></div>
+        <div class="mini"><h4>Supply Gap</h4><p>Few consistently bookable, safety-governed equestrian products in micro-destinations.</p></div>
+        <div class="mini"><h4>Model Edge</h4><p>Accommodation-embedded distribution + product curation + unit economics control.</p></div>
+        <div class="mini"><h4>Scale Logic</h4><p>Launch in Rosendal, prove discipline, then replicate playbook in adjacent towns.</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="opportunity">
+      <h2>2) Opportunity Context: Why Rosendal, Why Now</h2>
+      <ul>
+        <li>Scenic identity and low-density destination fit.</li>
+        <li>Existing accommodation base supports partner-driven conversion.</li>
+        <li>Weekend and holiday demand concentration aligns with curated ride slots.</li>
+        <li>Consumers increasingly value restorative, story-rich, social-shareable moments.</li>
+      </ul>
+      <p class="muted">Commercial reality: demand must come primarily from visitors and partner stays—not local resident foot traffic.</p>
+    </section>
+
+    <section class="card" id="venture">
+      <h2>3) Venture Design: Business Model and Value Proposition</h2>
+      <h3>Vision</h3>
+      <p>Become Rosendal’s most trusted premium countryside riding experience brand.</p>
+      <h3>Value Proposition</h3>
+      <ul>
+        <li>Professionally guided equestrian experiences.</li>
+        <li>Safety-led operations with reliable service standards.</li>
+        <li>Family-friendly and premium occasion products.</li>
+        <li>Easy booking and strong communication workflows.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="portfolio">
+      <h2>4) Product Portfolio and Revenue Architecture</h2>
+      <div class="kpi-grid">
+        <div class="mini"><h4>Scenic Trail Ride</h4><p>Core demand product (60–90 min).</p><b>R450–R650 pp</b></div>
+        <div class="mini"><h4>Sunset Premium Ride</h4><p>Golden-hour curated stop + refreshments.</p><b>R700–R1,050 pp</b></div>
+        <div class="mini"><h4>Pony Discovery</h4><p>High-conversion family product.</p><b>R180–R280</b></div>
+        <div class="mini"><h4>Private Couple Escape</h4><p>High-margin premium package.</p><b>R1,800–R2,700</b></div>
+      </div>
+      <p>Ancillary upside includes photo/video bundles, curated refreshments, seasonal event pricing, and gift vouchers.</p>
+    </section>
+
+    <section class="card" id="market">
+      <h2>5) Market Analysis and Demand Engine</h2>
+      <h3>Core segments</h3>
+      <ul>
+        <li>Weekend couples</li>
+        <li>Family leisure travelers</li>
+        <li>Friend groups</li>
+        <li>Occasion buyers (proposals, anniversaries)</li>
+        <li>Corporate micro-retreats</li>
+      </ul>
+      <h3>Funnel map</h3>
+      <div class="flow" aria-label="Demand funnel">
+        <div>Discover</div><div>Consider</div><div>Book</div><div>Delight</div><div>Refer</div>
+      </div>
+    </section>
+
+    <section class="card" id="positioning">
+      <h2>6) Competitive Positioning and Differentiation</h2>
+      <p><b>Positioning statement:</b> “Rosendal’s most trusted countryside riding experience—safe, beautifully curated, and easy to book.”</p>
+      <div class="cards-4">
+        <div class="mini"><h4>Trust Moat</h4><p>Safety and professionalism baked into brand.</p></div>
+        <div class="mini"><h4>Distribution Moat</h4><p>Embedded partner channel across local stays.</p></div>
+        <div class="mini"><h4>Experience Moat</h4><p>Curation and storytelling beyond generic rides.</p></div>
+        <div class="mini"><h4>Data Moat</h4><p>Product-level performance and margin analytics.</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="commercial">
+      <h2>7) Commercial Strategy</h2>
+      <h3>Primary Channel: Accommodation partnerships</h3>
+      <ul>
+        <li>Commission model: 15%–25% (volume-linked).</li>
+        <li>Partner sales kit: scripts, cards, media, booking links.</li>
+        <li>"Book with your stay" packaging to maximize conversion.</li>
+      </ul>
+      <h3>Secondary Channels</h3>
+      <ul>
+        <li>Google Business Profile</li>
+        <li>Instagram / Facebook short-form</li>
+        <li>WhatsApp booking funnel</li>
+      </ul>
+    </section>
+
+    <section class="card" id="operations">
+      <h2>8) Operating Model: Safety, Welfare, Standards</h2>
+      <div class="risk-grid">
+        <div class="mini"><h4>Safety Protocols <span class="badge ok">Non-Negotiable</span></h4><p>Rider screening, briefings, gear checks, guide ratios, emergency SOPs.</p></div>
+        <div class="mini"><h4>Legal/Compliance</h4><p>Indemnities, minors consent, public liability insurance, incident logs.</p></div>
+        <div class="mini"><h4>Animal Welfare</h4><p>Vet/farrier schedules, rest-cycle caps, documented welfare records.</p></div>
+        <div class="mini"><h4>Service QA</h4><p>On-time departures, post-ride feedback loop, weekly coaching.</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="financials">
+      <h2>9) Financial Model: Assumptions & Return Logic</h2>
+      <p class="muted">All figures are planning estimates pending final supplier quotations and pilot validation.</p>
+      <ul>
+        <li><b>Indicative startup envelope:</b> R450,000–R900,000.</li>
+        <li><b>Portfolio margin discipline:</b> maintain &gt;45% gross margin at product portfolio level.</li>
+        <li><b>Scaling rule:</b> no product expands without sustained positive contribution margin.</li>
+      </ul>
+      <h3>Monthly Revenue Formula</h3>
+      <p><code>(Scenic × Price) + (Sunset × Price) + (Pony × Price) + (Private × Price) + Add-ons</code></p>
+    </section>
+
+    <section class="card" id="funding">
+      <h2>10) Funding Ask, Use of Funds, Deal Structures</h2>
+      <div class="funding">
+        <div class="muted">Target initial raise</div>
+        <div class="ask">R750,000</div>
+        <div class="kpi-grid">
+          <div class="mini"><h4>30%</h4><p>Safety systems and operating setup</p></div>
+          <div class="mini"><h4>20%</h4><p>Animal care reserves and readiness</p></div>
+          <div class="mini"><h4>15%</h4><p>Route/site readiness improvements</p></div>
+          <div class="mini"><h4>15%</h4><p>Marketing and launch content</p></div>
+          <div class="mini"><h4>10%</h4><p>Booking/admin systems and training</p></div>
+          <div class="mini"><h4>10%</h4><p>Working capital buffer</p></div>
+        </div>
+      </div>
+      <p>Potential structures: equity, revenue share, blended debt-equity, or impact-linked finance.</p>
+    </section>
+
+    <section class="card" id="risk">
+      <h2>11) Risk Register & Mitigation</h2>
+      <div class="risk-grid">
+        <div class="mini"><h4>Weather volatility <span class="badge risk">Risk</span></h4><p>Dynamic scheduling, transparent cancellation terms, weather alerts.</p></div>
+        <div class="mini"><h4>Seasonality <span class="badge risk">Risk</span></h4><p>Portfolio diversity + concentration on high-yield demand windows.</p></div>
+        <div class="mini"><h4>Safety incident <span class="badge risk">Risk</span></h4><p>SOP rigor, trained guides, documentation discipline, insurance cover.</p></div>
+        <div class="mini"><h4>Animal health <span class="badge risk">Risk</span></h4><p>Preventive care cycles, welfare monitoring, contingency rostering.</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="impact">
+      <h2>12) Impact Thesis</h2>
+      <div class="cards-4">
+        <div class="mini"><h4>Jobs</h4><p>Guide, operations, hospitality, booking roles.</p></div>
+        <div class="mini"><h4>Skills</h4><p>Safety, tourism operations, guest-experience training.</p></div>
+        <div class="mini"><h4>Local Spend</h4><p>Supplier and partner revenue uplift through bundled experiences.</p></div>
+        <div class="mini"><h4>Destination Value</h4><p>Stronger Rosendal identity and repeat visitation.</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="roadmap">
+      <h2>13) 24-Month Roadmap</h2>
+      <div class="timeline">
+        <div class="step"><b>Phase 0 (0–2 months):</b> Compliance pack, SOP finalization, insurance, route tests, partner onboarding.</div>
+        <div class="step"><b>Phase 1 (3–6 months):</b> Controlled soft launch, slot optimization, review capture, partner acceleration.</div>
+        <div class="step"><b>Phase 2 (7–12 months):</b> Utilization and basket-value improvements, premium add-ons, referral cadence.</div>
+        <div class="step"><b>Phase 3 (13–24 months):</b> Expansion readiness testing, replication playbook, growth-round prep.</div>
+      </div>
+    </section>
+
+    <section class="card" id="dd">
+      <h2>14) Investor Due Diligence Checklist</h2>
+      <ul>
+        <li>Founder and management bios</li>
+        <li>SOP manual and safety policies</li>
+        <li>Insurance policy summaries</li>
+        <li>3-case financial workbook (base/upside/downside)</li>
+        <li>Partner LOIs/MOUs</li>
+        <li>Legal templates and indemnities</li>
+        <li>Animal welfare records framework</li>
+        <li>Launch calendar and marketing assets</li>
+      </ul>
+    </section>
+
+    <section class="card" id="close">
+      <h2>15) Closing Investment Rationale</h2>
+      <p>RECE combines rural tourism demand with strong operational discipline. The venture is designed to deliver both investable returns and measurable local impact through a staged, safety-first, partnership-powered execution model.</p>
+      <p><b>One-line proposition:</b> Fund a governance-led countryside experience platform with credible margin potential and replicable expansion upside.</p>
+    </section>
+
+    <footer>
+      RECE Investor Memorandum HTML • Crafted for clarity, visual storytelling, and investment confidence.
+    </footer>
+  </main>
+</body>
+</html>
